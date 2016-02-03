@@ -12,8 +12,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.11</junit.version>
-		<spring.boot.version>1.2.5.RELEASE</spring.boot.version>
-		<spring.version>4.1.6.RELEASE</spring.version>
+		<spring.boot.version>1.3.0.RELEASE</spring.boot.version>
+		<spring.version>4.2.3.RELEASE</spring.version>
 		<!-- <htche-web-test.version>1.0.2</htche-web-test.version> -->
 	</properties>
 

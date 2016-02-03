@@ -34,8 +34,7 @@ public class TransactionalTestCase {
 	@RunWith(SpringJUnit4ClassRunner.class)
 	@ComponentScan
 	@SpringApplicationConfiguration(classes = { SingleDataSourceConfig.class, TransactionManagerConfigure.class })
-	@IntegrationTest({
-			"database.ds1.driverClassName:com.mysql.jdbc.Driver",
+	@IntegrationTest({ "database.ds1.driverClassName:com.mysql.jdbc.Driver",
 			"database.ds1.url:jdbc:mysql://db01.dev.htche.com/test01?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8",
 			"database.ds1.username:test01", "database.ds1.password:dDcuH1WOOKzdr49xYaoL" })
 	public static class SingleDataSourceTestCase extends TransactionalTestCase {
@@ -50,7 +49,7 @@ public class TransactionalTestCase {
 			for (int i = 0; i < jdbcTemplates.size(); i++) {
 				logger.debug("jdbcTemplates #" + i);
 				jdbcTemplates.get(i).execute(sql);
-				Assert.assertEquals(1, jdbcTemplates.get(i).queryForInt(select));
+				Assert.assertEquals(1, jdbcTemplates.get(i).queryForObject(select, Integer.class).intValue());
 			}
 		}
 	}
@@ -58,11 +57,9 @@ public class TransactionalTestCase {
 	@RunWith(SpringJUnit4ClassRunner.class)
 	@ComponentScan
 	@SpringApplicationConfiguration(classes = { MultipleDataSourceConfig.class, TransactionManagerConfigure.class })
-	@IntegrationTest({
-			"database.ds1.driverClassName:com.mysql.jdbc.jdbc2.optional.MysqlXADataSource",
+	@IntegrationTest({ "database.ds1.driverClassName:com.mysql.jdbc.jdbc2.optional.MysqlXADataSource",
 			"database.ds1.url:jdbc:mysql://db01.dev.htche.com/test01?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8",
-			"database.ds1.username:test01",
-			"database.ds1.password:dDcuH1WOOKzdr49xYaoL",
+			"database.ds1.username:test01", "database.ds1.password:dDcuH1WOOKzdr49xYaoL",
 			"database.ds2.driverClassName:com.mysql.jdbc.jdbc2.optional.MysqlXADataSource",
 			"database.ds2.url:jdbc:mysql://db01.dev.htche.com/test02?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8",
 			"database.ds2.username:test02", "database.ds2.password:UsAbOuncMovDYRynPgO9" })
@@ -78,7 +75,7 @@ public class TransactionalTestCase {
 			for (int i = 0; i < jdbcTemplates.size(); i++) {
 				logger.debug("jdbcTemplates #" + i);
 				jdbcTemplates.get(i).execute(sql);
-				Assert.assertEquals(1, jdbcTemplates.get(i).queryForInt(select));
+				Assert.assertEquals(1, jdbcTemplates.get(i).queryForObject(select, Integer.class).intValue());
 			}
 		}
 	}
