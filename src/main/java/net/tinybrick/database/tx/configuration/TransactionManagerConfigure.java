@@ -1,4 +1,4 @@
-package com.wang.database.tx.configuration;
+package net.tinybrick.database.tx.configuration;
 
 import java.util.List;
 
