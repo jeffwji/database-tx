@@ -1,4 +1,4 @@
-package com.wang.database.tx.unit.configuration;
+package net.tinybrick.database.tx.unit.configuration;
 
 import javax.sql.DataSource;
 

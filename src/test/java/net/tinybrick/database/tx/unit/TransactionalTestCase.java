@@ -1,10 +1,11 @@
-package com.wang.database.tx.unit;
+package net.tinybrick.database.tx.unit;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import net.tinybrick.database.tx.unit.configuration.TestDatabaseConfigure;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,9 +18,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wang.database.tx.configuration.TransactionManagerConfigure;
-import com.wang.database.tx.unit.configuration.TestDatabaseConfigure.MultipleDataSourceConfig;
-import com.wang.database.tx.unit.configuration.TestDatabaseConfigure.SingleDataSourceConfig;
+import net.tinybrick.database.tx.configuration.TransactionManagerConfigure;
 
 //@TestPropertySource(locations = "classpath:config/database.properties")
 public class TransactionalTestCase {
@@ -33,7 +32,7 @@ public class TransactionalTestCase {
 
 	@RunWith(SpringJUnit4ClassRunner.class)
 	@ComponentScan
-	@SpringApplicationConfiguration(classes = { SingleDataSourceConfig.class, TransactionManagerConfigure.class })
+	@SpringApplicationConfiguration(classes = { TestDatabaseConfigure.SingleDataSourceConfig.class, TransactionManagerConfigure.class })
 	@IntegrationTest({ "database.ds1.driverClassName:com.mysql.jdbc.Driver",
 			"database.ds1.url:jdbc:mysql://db01.dev.htche.com/test01?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8",
 			"database.ds1.username:test01", "database.ds1.password:dDcuH1WOOKzdr49xYaoL" })
@@ -56,7 +55,7 @@ public class TransactionalTestCase {
 
 	@RunWith(SpringJUnit4ClassRunner.class)
 	@ComponentScan
-	@SpringApplicationConfiguration(classes = { MultipleDataSourceConfig.class, TransactionManagerConfigure.class })
+	@SpringApplicationConfiguration(classes = { TestDatabaseConfigure.MultipleDataSourceConfig.class, TransactionManagerConfigure.class })
 	@IntegrationTest({ "database.ds1.driverClassName:com.mysql.jdbc.jdbc2.optional.MysqlXADataSource",
 			"database.ds1.url:jdbc:mysql://db01.dev.htche.com/test01?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8",
 			"database.ds1.username:test01", "database.ds1.password:dDcuH1WOOKzdr49xYaoL",
